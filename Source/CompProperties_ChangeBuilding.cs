@@ -7,8 +7,8 @@ using Verse;
 
 namespace UpgradeBuildings
 {
-    internal class BuildingGroupModExtension: DefModExtension
+    public class CompProperties_ChangeBuilding : CompProperties
     {
-        public string buildingGroup;
+
     }
 }

@@ -7,8 +7,14 @@ using Verse;
 
 namespace UpgradeBuildings
 {
-    internal static class UpgradeBuildings
+    [StaticConstructorOnStartup]
+    public static class UpgradeBuildings
     {
+        static UpgradeBuildings()
+        {
+
+        }
+
         public static LogLevel logLevel = LogLevel.Warning;
 
         public static void LogMessage(LogLevel logLevel, params string[] messages)
@@ -33,7 +39,7 @@ namespace UpgradeBuildings
         }
     }
 
-    internal enum LogLevel
+    public enum LogLevel
     {
         None = 0,
         Error = 1,

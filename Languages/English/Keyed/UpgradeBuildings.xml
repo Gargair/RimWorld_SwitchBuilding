@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
   <UpgBldg.Change>Change</UpgBldg.Change>
+  <UpgBldg.NoBuildingGroup>ThingDef configured with buildinggroup extension, but buildinggoup is empty.</UpgBldg.NoBuildingGroup>
+  <UpgBldg.Labels.ChangeTo>Change to {0}</UpgBldg.Labels.ChangeTo>
+  <UpgBldg.Labels.ChangingTo>Changing to {0}</UpgBldg.Labels.ChangingTo>
+  <UpgBldg.Labels.ChangeBuilding>Change Building</UpgBldg.Labels.ChangeBuilding>
+
+  <UpgBldg.Tooltips.ChangeBuilding>Change this building to another one of the same group</UpgBldg.Tooltips.ChangeBuilding>
+  
 </LanguageData>

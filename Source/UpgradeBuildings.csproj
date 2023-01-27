@@ -41,8 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BuildingGroup.cs" />
+    <Compile Include="BuildingGroupUtility.cs" />
+    <Compile Include="Command_ChangeBuilding.cs" />
+    <Compile Include="CompProperties_ChangeBuilding.cs" />
+    <Compile Include="Comp_ChangeBuilding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpgradeBuildingDefOf.cs" />
+    <Compile Include="UpgradeBuildings.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">

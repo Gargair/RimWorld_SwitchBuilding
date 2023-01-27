@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="Door"]</xpath>
+    <value>
+      <li Class="UpgradeBuildings.BuildingGroup">
+        <buildingGroup>door</buildingGroup>
+      </li>
+    </value>
+    <success>Normal</success>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="Autodoor"]</xpath>
+    <value>
+      <li Class="UpgradeBuildings.BuildingGroup">
+        <buildingGroup>door</buildingGroup>
+      </li>
+    </value>
+    <success>Normal</success>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Doors Expanded</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Add the Upgrade comp to 2x1 door -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="PH_DoorDouble"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>door2x1</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="PH_AutodoorDouble"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>door2x1</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+
+        <!-- Add the Upgrade comp to 3x1 door -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="PH_DoorTriple"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>door3x1</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="PH_AutodoorTriple"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>door3x1</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
