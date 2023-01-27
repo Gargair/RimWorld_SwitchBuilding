@@ -12,6 +12,7 @@ namespace UpgradeBuildings
     {
         static UpgradeBuildings()
         {
+            LogMessage(LogLevel.Information, "Welcome to pointless log spam");
             var changeComp = new CompProperties_ChangeBuilding();
             foreach (var thingDef in DefDatabase<ThingDef>.AllDefs
                         .Where(thingDef => thingDef.HasModExtension<BuildingGroup>())
@@ -19,9 +20,10 @@ namespace UpgradeBuildings
             {
                 thingDef.comps.Add(changeComp);
             }
+            LogMessage(LogLevel.Debug, "Finished adding comps to thingDefs");
         }
 
-        public static LogLevel logLevel = LogLevel.Warning;
+        public static LogLevel logLevel = LogLevel.Debug;
 
         public static void LogMessage(LogLevel logLevel, params string[] messages)
         {

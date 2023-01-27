@@ -18,6 +18,8 @@ namespace UpgradeBuildings
         private bool HasChangeDesignation => DesignationManager?.DesignationOn(parent, UpgradeBuildingDefOf.Designations.ChangeBuilding) != null;
         private bool needDesignationAfterSpawn = false;
 
+        public Comp_ChangeBuilding() { }
+
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (!HasChangeDesignation)
