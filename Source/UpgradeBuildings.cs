@@ -12,7 +12,13 @@ namespace UpgradeBuildings
     {
         static UpgradeBuildings()
         {
-
+            var changeComp = new CompProperties_ChangeBuilding();
+            foreach (var thingDef in DefDatabase<ThingDef>.AllDefs
+                        .Where(thingDef => thingDef.HasModExtension<BuildingGroup>())
+                        .Where(thingDef => !thingDef.HasComp(typeof(CompProperties_ChangeBuilding))))
+            {
+                thingDef.comps.Add(changeComp);
+            }
         }
 
         public static LogLevel logLevel = LogLevel.Warning;
