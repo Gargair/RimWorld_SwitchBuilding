@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <WorkGiverDef>
+    <defName>ChangeBuilding</defName>
+    <label>upgrade the designated item to its automated counterpart</label>
+    <giverClass>UpgradeBuildings.WorkGiver_ChangeBuilding</giverClass>
+    <workType>Construction</workType>
+    <verb>change</verb>
+    <gerund>changing</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>100</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+</Defs>

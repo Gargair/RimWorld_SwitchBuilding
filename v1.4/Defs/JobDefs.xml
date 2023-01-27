@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <JobDef>
+    <defName>ChangeBuilding</defName>
+    <driverClass>UpgradeBuildings.JobDriver_ChangeBuilding</driverClass>
+    <reportString>upgrading TargetA.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    <suspendable>false</suspendable>
+  </JobDef>
+</Defs>
