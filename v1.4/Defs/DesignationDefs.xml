@@ -2,7 +2,7 @@
 <Defs>
   <DesignationDef>
     <defName>ChangeBuilding</defName>
-    <texturePath>UI/Change</texturePath>
+    <texturePath>UI/ChangeSmall</texturePath>
     <targetType>Thing</targetType>
   </DesignationDef>
 </Defs>
