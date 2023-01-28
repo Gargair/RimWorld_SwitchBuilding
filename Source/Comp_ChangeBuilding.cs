@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace UpgradeBuildings
@@ -7,6 +8,8 @@ namespace UpgradeBuildings
     public class Comp_ChangeBuilding : ThingComp
     {
         public ThingDef changeTo;
+        public List<ThingDefCountClass> neededResources;
+        public List<ThingDefCountClass> payBackResources;
         public CompProperties_ChangeBuilding Props => (CompProperties_ChangeBuilding)props;
 
         private DesignationManager DesignationManager => parent?.Map?.designationManager;
@@ -37,6 +40,7 @@ namespace UpgradeBuildings
             if (BuildingGroupUtility.Instance.AreInSameBuildingGroup(parent.def, thingDef))
             {
                 changeTo = thingDef;
+                InitializeResources();
                 if (DesignationManager == null)
                 {
                     needDesignationAfterSpawn = true;
@@ -53,6 +57,8 @@ namespace UpgradeBuildings
         public void CancelChange()
         {
             changeTo = null;
+            neededResources = null;
+            payBackResources = null;
             if (DesignationManager != null)
             {
                 var des = DesignationManager.DesignationOn(parent, UpgradeBuildingDefOf.Designations.ChangeBuilding);
@@ -66,6 +72,7 @@ namespace UpgradeBuildings
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
+            InitializeResources();
             if (needDesignationAfterSpawn)
             {
                 if (DesignationManager != null)
@@ -79,7 +86,7 @@ namespace UpgradeBuildings
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<ThingDef>(ref changeTo, "UpgBldg.changeTo");
+            Scribe_Defs.Look<ThingDef>(ref changeTo, "UpgBldg.changeTo");
         }
 
         public override string CompInspectStringExtra()
@@ -89,6 +96,21 @@ namespace UpgradeBuildings
                 return "UpgBldg.Labels.ChangingTo".Translate(changeTo.LabelCap);
             }
             return base.CompInspectStringExtra();
+        }
+
+        private void InitializeResources()
+        {
+            if (changeTo != null && (neededResources == null || payBackResources == null))
+            {
+                var resourceDiff = UpgradeBuildings.GetResourceDifferenceForChange(parent, changeTo);
+                neededResources = resourceDiff.Where(c => c.count > 0).ToList();
+                payBackResources = resourceDiff.Where(c => c.count < 0).Select(c => new ThingDefCountClass(c.thingDef, -c.count)).ToList();
+            }
+            else if (changeTo == null && (neededResources != null || payBackResources != null))
+            {
+                neededResources = null;
+                payBackResources = null;
+            }
         }
     }
 }

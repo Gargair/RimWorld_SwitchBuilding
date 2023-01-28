@@ -4,5 +4,6 @@
     <defName>ChangeBuilding</defName>
     <texturePath>UI/ChangeSmall</texturePath>
     <targetType>Thing</targetType>
+    <removeIfBuildingDespawned>true</removeIfBuildingDespawned>
   </DesignationDef>
 </Defs>
