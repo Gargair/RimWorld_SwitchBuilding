@@ -7,5 +7,5 @@
   <UpgBldg.Labels.ChangeBuilding>Change Building</UpgBldg.Labels.ChangeBuilding>
 
   <UpgBldg.Tooltips.ChangeBuilding>Change this building to another one of the same group</UpgBldg.Tooltips.ChangeBuilding>
-  
+  <UpgBldg.Tooltips.ResearchMissing>Following research is missing: {0}</UpgBldg.Tooltips.ResearchMissing>
 </LanguageData>

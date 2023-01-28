@@ -41,12 +41,21 @@ namespace UpgradeBuildings
 
         private static IEnumerable<FloatMenuOption> getFloatingOptions()
         {
-            List<FloatMenuOption> list = new List<FloatMenuOption>();
             var allSelectedThings = Find.Selector.SelectedObjects.FindAll((object o) => typeof(ThingWithComps).IsAssignableFrom(o.GetType())).Cast<ThingWithComps>();
             var distinctChangeTos = allSelectedThings.Where((thing) => BuildingGroupUtility.Instance.HasBuildingGroup(thing.def)).SelectMany(thing => BuildingGroupUtility.Instance.GetOthersInBuildingGroup(thing.def)).Distinct();
             foreach (var thingDef in distinctChangeTos)
             {
-                yield return new FloatMenuOption("UpgBldg.Labels.ChangeTo".Translate(thingDef.LabelCap), () => ChangeTo(thingDef));
+                var option = new FloatMenuOption("UpgBldg.Labels.ChangeTo".Translate(thingDef.LabelCap), () => ChangeTo(thingDef), thingDef);
+                if (thingDef.researchPrerequisites != null)
+                {
+                    var unFinishedResearch = thingDef.researchPrerequisites.Where(res => !res.IsFinished);
+                    if (unFinishedResearch != null && unFinishedResearch.Count() > 0)
+                    {
+                        option.Disabled = true;
+                        option.tooltip = "UpgBldg.Tooltips.ResearchMissing".Translate(string.Join(", ", unFinishedResearch.Select(resDef => resDef.LabelCap)));
+                    }
+                }
+                yield return option;
             }
         }
     }
