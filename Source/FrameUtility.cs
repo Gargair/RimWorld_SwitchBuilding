@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,25 @@ namespace UpgradeBuildings
             var frameDef = NewReplaceFrameDef_Thing(def);
             frameCache.Add(def, frameDef);
             return frameDef;
+        }
+
+        public static bool IsChangeBuildingFrame(ThingDef def)
+        {
+            return frameCache.ContainsValue(def);
+        }
+
+        public static void AddCustomFrames()
+        {
+            Type typeFromHandle = typeof(ThingDef);
+            HashSet<ushort> h = ((Dictionary<Type, HashSet<ushort>>)AccessTools.Field(typeof(ShortHashGiver), "takenHashesPerDeftype").GetValue(null))[typeFromHandle];
+            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.ToList<ThingDef>().Where(td => td.HasComp(typeof(Comp_ChangeBuilding))))
+            {
+                ThingDef thingDef2 = NewReplaceFrameDef_Thing(thingDef);
+                frameCache[thingDef] = thingDef2;
+                GiveShortHash(thingDef2, typeFromHandle, h);
+                thingDef2.PostLoad();
+                DefDatabase<ThingDef>.Add(thingDef2);
+            }
         }
 
         private static ThingDef NewReplaceFrameDef_Thing(ThingDef def)
@@ -64,5 +84,8 @@ namespace UpgradeBuildings
                 leaveResourcesWhenKilled = true
             };
         }
+
+        private static GiveShortHashDel GiveShortHash = AccessTools.MethodDelegate<GiveShortHashDel>(AccessTools.Method(typeof(ShortHashGiver), "GiveShortHash", null, null), null, true);
+        private delegate void GiveShortHashDel(Def d, Type t, HashSet<ushort> h);
     }
 }

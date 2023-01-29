@@ -39,8 +39,9 @@ namespace UpgradeBuildings
 
         public void SetChangeTo(ThingDef thingDef)
         {
-            if (BuildingGroupUtility.Instance.AreInSameBuildingGroup(parent.def, thingDef))
+            if (BuildingGroupUtility.Instance.AreInSameBuildingGroup(parent.def, thingDef) && parent.def != thingDef)
             {
+                CancelChange();
                 changeTo = thingDef;
                 InitializeResources();
                 if (DesignationManager == null)
@@ -61,9 +62,10 @@ namespace UpgradeBuildings
                 frame.PostPostMake();
                 frame.StyleSourcePrecept = parent.StyleSourcePrecept;
                 frame.StyleDef = parent.StyleDef;
+                frame.thingToChange = parent;
+                frame.SetFactionDirect(parent.Faction);
                 UpgradeBuildings.LogMessage(LogLevel.Debug, "Placing Frame");
-                GenSpawn.WipeExistingThings(parent.Position, parent.Rotation, thingDef, parent.Map, DestroyMode.Deconstruct);
-                placedFrame = (Frame_ChangeBuilding)GenSpawn.Spawn(frame, parent.Position, parent.Map, parent.Rotation, WipeMode.FullRefund);
+                placedFrame = (Frame_ChangeBuilding)GenSpawn.Spawn(frame, parent.Position, parent.Map, parent.Rotation, WipeMode.Vanish);
             }
         }
 
@@ -124,9 +126,7 @@ namespace UpgradeBuildings
         {
             if (changeTo != null)
             {
-                var resourceDiff = UpgradeBuildings.GetResourceDifferenceForChange(parent, changeTo);
-                neededResources = resourceDiff.Where(c => c.count > 0).ToList();
-                payBackResources = resourceDiff.Where(c => c.count < 0).Select(c => new ThingDefCountClass(c.thingDef, -c.count)).ToList();
+                UpgradeBuildings.GetResourceDifferenceForChange(parent, changeTo, out neededResources, out payBackResources);
                 UpgradeBuildings.LogMessage(LogLevel.Debug, "Initialized resources");
                 UpgradeBuildings.LogMessage(LogLevel.Debug, "needed resources");
                 foreach (var c in neededResources)
@@ -146,7 +146,19 @@ namespace UpgradeBuildings
             }
         }
 
-        
-
+        public override void CompTick()
+        {
+            base.CompTick();
+            if (DesignationManager != null && !HasChangeDesignation)
+            {
+                if (changeTo != null ||
+                neededResources != null ||
+                payBackResources != null ||
+                placedFrame != null)
+                {
+                    CancelChange();
+                }
+            }
+        }
     }
 }

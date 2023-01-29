@@ -23,6 +23,7 @@ namespace UpgradeBuildings
             LogMessage(LogLevel.Debug, "Finished adding comps to thingDefs");
             var harmony = new Harmony("rakros.rimworld.upgradebuildings");
             harmony.PatchAll();
+            FrameUtility.AddCustomFrames();
         }
 
         public static LogLevel logLevel = LogLevel.Debug;
@@ -48,9 +49,11 @@ namespace UpgradeBuildings
             }
         }
 
-        public static IEnumerable<ThingDefCountClass> GetResourceDifferenceForChange(Thing source, ThingDef target)
+        public static void GetResourceDifferenceForChange(Thing source, ThingDef target, out List<ThingDefCountClass> neededResources, out List<ThingDefCountClass> refundedResources)
         {
             LogMessage(LogLevel.Debug, "GetNeededResourcesForChange", source.def.defName, "=>", target.defName);
+            neededResources = new List<ThingDefCountClass>();
+            refundedResources = new List<ThingDefCountClass>();
             var sourceCostList = source.CostListAdjusted();
             List<ThingDefCountClass> targetCostList;
             if (source.def.MadeFromStuff && target.MadeFromStuff)
@@ -77,24 +80,40 @@ namespace UpgradeBuildings
                 targetCostList = target.CostListAdjusted(null);
             }
 
-            return sourceCostList.FullOuterJoin(targetCostList, s => s.thingDef.defName, t => t.thingDef.defName, (sc, tc, defName) =>
+            var join = sourceCostList.FullOuterJoin(targetCostList, s => s.thingDef.defName, t => t.thingDef.defName, (sc, tc, defName) =>
             {
-                //LogMessage(LogLevel.Debug, defName, sc?.count.ToString(), tc?.count.ToString());
-                if (sc != null && tc != null)
+                int sourceCount = 0;
+                int targetCount = 0;
+                ThingDef thingDef = null;
+                if (sc != null)
                 {
-                    return new ThingDefCountClass(sc.thingDef, tc.count - sc.count);
+                    sourceCount = sc.count;
+                    thingDef = sc.thingDef;
                 }
-                else if (sc != null)
+                if (tc != null)
                 {
-                    sc.count *= -1;
-                    return sc;
+                    targetCount = tc.count;
+                    thingDef = tc.thingDef;
                 }
-                else if (tc != null)
+                return new
                 {
-                    return tc;
+                    thingDef = thingDef,
+                    count = targetCount - sourceCount
+                };
+            });
+
+            foreach (var i in join)
+            {
+                if (i.count > 0)
+                {
+                    neededResources.Add(new ThingDefCountClass(i.thingDef, i.count));
                 }
-                return null;
-            }).Where(c => c != null && c.count != 0);
+                else if (i.count < 0)
+                {
+                    refundedResources.Add(new ThingDefCountClass(i.thingDef, -i.count));
+
+                }
+            }
         }
 
         internal static IEnumerable<TResult> FullOuterJoin<TA, TB, TKey, TResult>(

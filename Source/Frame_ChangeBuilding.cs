@@ -24,14 +24,14 @@ namespace UpgradeBuildings
         {
             get
             {
-                return Comp.neededResources;
+                return Comp?.neededResources;
             }
         }
         public List<ThingDefCountClass> RefundedResources
         {
             get
             {
-                return Comp.payBackResources;
+                return Comp?.payBackResources;
             }
         }
 
@@ -59,6 +59,7 @@ namespace UpgradeBuildings
 
         public void CustomCompleteConstruction(Pawn worker)
         {
+            UpgradeBuildings.LogMessage(LogLevel.Debug, "CustomCompleteConstruction");
             List<CompHasSources> list = new List<CompHasSources>();
             for (int i = 0; i < this.resourceContainer.Count; i++)
             {
@@ -94,10 +95,6 @@ namespace UpgradeBuildings
                     GenPlace.TryPlaceThing(fuel, position, Map, ThingPlaceMode.Near);
                 }
             }
-
-            Map.designationManager.RemoveAllDesignationsOn(thingToChange);
-            thingToChange.Destroy(DestroyMode.WillReplace);
-            this.Destroy(DestroyMode.Vanish);
             if (this.GetStatValue(StatDefOf.WorkToBuild, true, -1) > 150f && this.def.entityDefToBuild is ThingDef && ((ThingDef)this.def.entityDefToBuild).category == ThingCategory.Building)
             {
                 SoundDefOf.Building_Complete.PlayOneShot(new TargetInfo(base.Position, map, false));
@@ -175,6 +172,10 @@ namespace UpgradeBuildings
                     thing.StyleDef = base.StyleDef;
                 }
                 thing.HitPoints = Mathf.CeilToInt((float)this.HitPoints / (float)base.MaxHitPoints * (float)thing.MaxHitPoints);
+                Color? ideoColorForBuilding = ChangeTo != null ? IdeoUtility.GetIdeoColorForBuilding(ChangeTo, base.Faction) : null;
+                var resourcesToRefund = RefundedResources;
+                Map.designationManager.RemoveAllDesignationsOn(thingToChange);
+                thingToChange.Destroy(DestroyMode.WillReplace);
                 GenSpawn.Spawn(thing, position, map, rotation, WipeMode.FullRefund, false);
                 Building building;
                 if ((building = (thing as Building)) != null)
@@ -197,26 +198,29 @@ namespace UpgradeBuildings
                     building_Storage.settings.CopyFrom(this.storageSettings);
                 }
                 this.SetStorageGroup(null);
-                if (ChangeTo != null)
+                if (ideoColorForBuilding != null)
                 {
-                    Color? ideoColorForBuilding = IdeoUtility.GetIdeoColorForBuilding(ChangeTo, base.Faction);
-                    if (ideoColorForBuilding != null)
+                    thing.SetColor(ideoColorForBuilding.Value, true);
+                }
+
+                if (resourcesToRefund != null)
+                {
+                    foreach (var item2 in resourcesToRefund)
                     {
-                        thing.SetColor(ideoColorForBuilding.Value, true);
+                        var thing3 = ThingMaker.MakeThing(item2.thingDef);
+                        thing3.stackCount = item2.count;
+                        GenPlace.TryPlaceThing(thing3, position, map, ThingPlaceMode.Near);
                     }
                 }
 
-                if (RefundedResources == null)
-                {
-                    return;
-                }
-
-                foreach (var item2 in RefundedResources)
-                {
-                    var thing3 = ThingMaker.MakeThing(item2.thingDef);
-                    thing3.stackCount = item2.count;
-                    GenPlace.TryPlaceThing(thing3, position, Map, ThingPlaceMode.Near);
-                }
+            }
+            else
+            {
+                UpgradeBuildings.LogMessage(LogLevel.Debug, "ChangeTo is empty");
+            }
+            if (!this.Destroyed)
+            {
+                this.Destroy(DestroyMode.Vanish);
             }
 
             worker.records.Increment(RecordDefOf.ThingsConstructed);
