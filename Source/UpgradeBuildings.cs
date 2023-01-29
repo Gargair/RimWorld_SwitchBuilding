@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace UpgradeBuildings
                 thingDef.comps.Add(changeComp);
             }
             LogMessage(LogLevel.Debug, "Finished adding comps to thingDefs");
+            var harmony = new Harmony("rakros.rimworld.upgradebuildings");
+            harmony.PatchAll();
         }
 
         public static LogLevel logLevel = LogLevel.Debug;
@@ -53,7 +56,7 @@ namespace UpgradeBuildings
             if (source.def.MadeFromStuff && target.MadeFromStuff)
             {
                 LogMessage(LogLevel.Debug, "Both made from stuff");
-                if (target.stuffCategories.Intersect(source.Stuff.stuffCategories).Count() > 0)
+                if (GenStuff.AllowedStuffsFor(target).Contains(source.Stuff))
                 {
                     LogMessage(LogLevel.Debug, "Stuff can be taken over");
                     targetCostList = target.CostListAdjusted(source.Stuff);
@@ -76,8 +79,22 @@ namespace UpgradeBuildings
 
             return sourceCostList.FullOuterJoin(targetCostList, s => s.thingDef.defName, t => t.thingDef.defName, (sc, tc, defName) =>
             {
-                return new ThingDefCountClass(sc.thingDef, tc.count - sc.count);
-            }).Where(c => c.count != 0);
+                //LogMessage(LogLevel.Debug, defName, sc?.count.ToString(), tc?.count.ToString());
+                if (sc != null && tc != null)
+                {
+                    return new ThingDefCountClass(sc.thingDef, tc.count - sc.count);
+                }
+                else if (sc != null)
+                {
+                    sc.count *= -1;
+                    return sc;
+                }
+                else if (tc != null)
+                {
+                    return tc;
+                }
+                return null;
+            }).Where(c => c != null && c.count != 0);
         }
 
         internal static IEnumerable<TResult> FullOuterJoin<TA, TB, TKey, TResult>(

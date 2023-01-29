@@ -46,18 +46,26 @@
     <Compile Include="Command_ChangeBuilding.cs" />
     <Compile Include="CompProperties_ChangeBuilding.cs" />
     <Compile Include="Comp_ChangeBuilding.cs" />
+    <Compile Include="FrameUtility.cs" />
+    <Compile Include="Frame_ChangeBuilding.cs" />
+    <Compile Include="Frame_Patch.cs" />
     <Compile Include="JobDriver_ChangeBuilding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpgradeBuildingDefOf.cs" />
     <Compile Include="UpgradeBuildings.cs" />
     <Compile Include="WorkGiver_ChangeBuilding.cs" />
   </ItemGroup>
+  <ItemDefinitionGroup>
+    <PackageReference ExcludeAssets="runtime" />
+  </ItemDefinitionGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
       <Version>1.4.3613</Version>
+      <Private>False</Private>
     </PackageReference>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
       <Version>10.0.1</Version>
+      <Private>False</Private>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

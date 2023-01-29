@@ -30,7 +30,7 @@ namespace UpgradeBuildings
                     Comp_ChangeBuilding changeBuildingComp = thing.TryGetComp<Comp_ChangeBuilding>();
                     if (changeBuildingComp != null)
                     {
-                        changeBuildingComp.ChangeTo(thingDef);
+                        changeBuildingComp.SetChangeTo(thingDef);
                     }
                 }
             }
