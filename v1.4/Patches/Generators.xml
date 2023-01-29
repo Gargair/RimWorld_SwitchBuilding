@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+  <!-- Stoves -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="Door"]</xpath>
+    <xpath>/Defs/ThingDef[defName="WoodFiredGenerator"]</xpath>
     <value>
       <li Class="UpgradeBuildings.BuildingGroup">
-        <buildingGroup>door</buildingGroup>
+        <buildingGroup>generator</buildingGroup>
       </li>
     </value>
     <success>Normal</success>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="Autodoor"]</xpath>
+    <xpath>/Defs/ThingDef[defName="ChemfuelPoweredGenerator"]</xpath>
     <value>
       <li Class="UpgradeBuildings.BuildingGroup">
-        <buildingGroup>door</buildingGroup>
+        <buildingGroup>generator</buildingGroup>
       </li>
     </value>
     <success>Normal</success>

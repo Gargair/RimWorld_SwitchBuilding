@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <!-- Stoves -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="FueledStove"]</xpath>
+    <value>
+      <li Class="UpgradeBuildings.BuildingGroup">
+        <buildingGroup>stove</buildingGroup>
+      </li>
+    </value>
+    <success>Normal</success>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="ElectricStove"]</xpath>
+    <value>
+      <li Class="UpgradeBuildings.BuildingGroup">
+        <buildingGroup>stove</buildingGroup>
+      </li>
+    </value>
+    <success>Normal</success>
+  </Operation>
+
+  <!-- tailroing bench -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="HandTailoringBench"]</xpath>
+    <value>
+      <li Class="UpgradeBuildings.BuildingGroup">
+        <buildingGroup>tailoringbench</buildingGroup>
+      </li>
+    </value>
+    <success>Normal</success>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="ElectricTailoringBench"]</xpath>
+    <value>
+      <li Class="UpgradeBuildings.BuildingGroup">
+        <buildingGroup>tailoringbench</buildingGroup>
+      </li>
+    </value>
+    <success>Normal</success>
+  </Operation>
+
+  <!-- tailroing bench -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="FueledSmithy"]</xpath>
+    <value>
+      <li Class="UpgradeBuildings.BuildingGroup">
+        <buildingGroup>smithy</buildingGroup>
+      </li>
+    </value>
+    <success>Normal</success>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="ElectricSmithy"]</xpath>
+    <value>
+      <li Class="UpgradeBuildings.BuildingGroup">
+        <buildingGroup>smithy</buildingGroup>
+      </li>
+    </value>
+    <success>Normal</success>
+  </Operation>
+</Patch>
