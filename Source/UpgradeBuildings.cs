@@ -26,7 +26,7 @@ namespace UpgradeBuildings
             FrameUtility.AddCustomFrames();
         }
 
-        public static LogLevel logLevel = LogLevel.Debug;
+        public static LogLevel logLevel = LogLevel.Information;
 
         public static void LogMessage(LogLevel logLevel, params string[] messages)
         {
