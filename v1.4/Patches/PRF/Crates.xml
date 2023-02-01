@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Project RimFactory Revived</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Add the Upgrade comp to small crates -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="PRF_WoodCrate_I"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>crateI</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="PRF_SteelCrate_I"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>crateI</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+        <!-- Add the Upgrade comp to large crates -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="PRF_WoodCrate_II"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>crateII</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="PRF_SteelCrate_II"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>crateII</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
