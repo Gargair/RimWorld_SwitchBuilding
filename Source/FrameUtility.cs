@@ -23,7 +23,12 @@ namespace UpgradeBuildings
 
         public static bool IsChangeBuildingFrame(ThingDef def)
         {
-            return frameCache.ContainsValue(def);
+            return def != null && frameCache.ContainsValue(def);
+        }
+
+        public static bool IsChangeBuildingFrame(Thing thing)
+        {
+            return thing != null && IsChangeBuildingFrame(thing.def);
         }
 
         public static void AddCustomFrames()

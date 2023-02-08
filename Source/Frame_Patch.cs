@@ -55,7 +55,7 @@ namespace UpgradeBuildings
             {
                 return;
             }
-            if (constructible is Frame_ChangeBuilding)
+            if (FrameUtility.IsChangeBuildingFrame(constructible))
             {
                 __result = false;
             }

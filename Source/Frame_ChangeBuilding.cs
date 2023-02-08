@@ -74,26 +74,8 @@ namespace UpgradeBuildings
 
             var position = thingToChange.Position;
             var rotation = thingToChange.Rotation;
-            BillStack billStack = null;
             var stuff = thingToChange.Stuff;
-            var hasQuality = thingToChange.TryGetQuality(out var targetqc);
-            if (thingToChange is Building_WorkTable Building)
-            {
-                billStack = Building.BillStack;
-            }
 
-            var compRefuelable = thingToChange.TryGetComp<CompRefuelable>();
-            if (compRefuelable != null)
-            {
-                var num = Mathf.CeilToInt(compRefuelable.Fuel);
-                var fuelDef = compRefuelable.Props.fuelFilter.AllowedThingDefs.First();
-                if (fuelDef != null && num > 0)
-                {
-                    var fuel = ThingMaker.MakeThing(fuelDef);
-                    fuel.stackCount = num;
-                    GenPlace.TryPlaceThing(fuel, position, Map, ThingPlaceMode.Near);
-                }
-            }
             if (this.GetStatValue(StatDefOf.WorkToBuild, true, -1) > 150f && this.def.entityDefToBuild is ThingDef && ((ThingDef)this.def.entityDefToBuild).category == ThingCategory.Building)
             {
                 SoundDefOf.Building_Complete.PlayOneShot(new TargetInfo(base.Position, map, false));
@@ -114,20 +96,10 @@ namespace UpgradeBuildings
                     thing = ThingMaker.MakeThing(ChangeTo, null);
                 }
                 thing.SetFactionDirect(base.Faction);
-                var compQuality = thing.TryGetComp<CompQuality>();
-                if (hasQuality && compQuality != null)
-                {
-                    compQuality.SetQuality(targetqc, ArtGenerationContext.Colony);
-                }
+                CopyComps(thingToChange, thing, worker);
+
                 thing.HitPoints = (int)Math.Floor(((float)thingToChange.HitPoints / (float)thingToChange.MaxHitPoints) * (float)thing.MaxHitPoints);
-                if (billStack != null && thing is Building_WorkTable workTable)
-                {
-                    foreach (var item in billStack)
-                    {
-                        workTable.BillStack.AddBill(item);
-                    }
-                    workTable.BillStack.RemoveIncompletableBills();
-                }
+
                 var compPower = thing.TryGetComp<CompPower>();
                 if (compPower != null)
                 {
@@ -145,15 +117,6 @@ namespace UpgradeBuildings
                     }
                 }
 
-                CompArt compArt = thing.TryGetComp<CompArt>();
-                if (compArt != null)
-                {
-                    if (compQuality == null)
-                    {
-                        compArt.InitializeArt(ArtGenerationContext.Colony);
-                    }
-                    compArt.JustCreatedBy(worker);
-                }
                 CompHasSources compHasSources2 = thing.TryGetComp<CompHasSources>();
                 if (compHasSources2 != null && !list.NullOrEmpty<CompHasSources>())
                 {
@@ -170,7 +133,6 @@ namespace UpgradeBuildings
                 {
                     thing.StyleDef = base.StyleDef;
                 }
-                thing.HitPoints = Mathf.CeilToInt((float)this.HitPoints / (float)base.MaxHitPoints * (float)thing.MaxHitPoints);
                 Color? ideoColorForBuilding = ChangeTo != null ? IdeoUtility.GetIdeoColorForBuilding(ChangeTo, base.Faction) : null;
                 var resourcesToRefund = RefundedResources;
                 Map.designationManager.RemoveAllDesignationsOn(thingToChange);
@@ -185,16 +147,6 @@ namespace UpgradeBuildings
                         lord.AddBuilding(building);
                     }
                     building.StyleSourcePrecept = base.StyleSourcePrecept;
-                }
-                IStorageGroupMember member;
-                if ((member = (thing as IStorageGroupMember)) != null)
-                {
-                    member.SetStorageGroup(this.storageGroup);
-                }
-                Building_Storage building_Storage;
-                if ((building_Storage = (thing as Building_Storage)) != null && this.storageSettings != null)
-                {
-                    building_Storage.settings.CopyFrom(this.storageSettings);
                 }
                 this.SetStorageGroup(null);
                 if (ideoColorForBuilding != null)
@@ -262,6 +214,64 @@ namespace UpgradeBuildings
         public List<ThingDefCountClass> CustomCostListAdjusted()
         {
             return NeededResources;
+        }
+
+        private static void CopyComps(Thing oldThing, Thing newThing, Pawn worker)
+        {
+            // Quality and Art
+            var hasQuality = oldThing.TryGetQuality(out var targetqc);
+            var compQuality = newThing.TryGetComp<CompQuality>();
+            if (hasQuality && compQuality != null)
+            {
+                compQuality.SetQuality(targetqc, ArtGenerationContext.Colony);
+            }
+            else if (compQuality != null)
+            {
+                compQuality.SetQuality(QualityUtility.GenerateQuality(QualityGenerator.BaseGen), ArtGenerationContext.Colony);
+            }
+            CompArt compArt = newThing.TryGetComp<CompArt>();
+            if (compArt != null)
+            {
+                if (compQuality == null)
+                {
+                    compArt.InitializeArt(ArtGenerationContext.Colony);
+                }
+                compArt.JustCreatedBy(worker);
+            }
+
+            // Check Refuelable
+            var compRefuelable = oldThing.TryGetComp<CompRefuelable>();
+            if (compRefuelable != null)
+            {
+                var num = Mathf.CeilToInt(compRefuelable.Fuel);
+                var fuelDef = compRefuelable.Props.fuelFilter.AllowedThingDefs.First();
+                if (fuelDef != null && num > 0)
+                {
+                    var fuel = ThingMaker.MakeThing(fuelDef);
+                    fuel.stackCount = num;
+                    GenPlace.TryPlaceThing(fuel, oldThing.Position, oldThing.Map, ThingPlaceMode.Near);
+                }
+            }
+
+            // Copy BillStack
+            if (oldThing is Building_WorkTable oldWorkTable && newThing is Building_WorkTable newWorkTable)
+            {
+                foreach (var item in oldWorkTable.BillStack)
+                {
+                    newWorkTable.BillStack.AddBill(item);
+                }
+                newWorkTable.BillStack.RemoveIncompletableBills();
+            }
+
+            // Copy Storage Settings
+            if (oldThing is IStorageGroupMember oldMember && newThing is IStorageGroupMember newMember)
+            {
+                newMember.SetStorageGroup(oldMember.Group);
+            }
+            if (oldThing is Building_Storage oldStorage && oldStorage.settings != null && newThing is Building_Storage newStorage && newStorage.settings != null)
+            {
+                newStorage.settings.CopyFrom(oldStorage.settings);
+            }
         }
     }
 }
