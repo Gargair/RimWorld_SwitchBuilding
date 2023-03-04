@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>GlitterNet</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Add the Upgrade comp to processors -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="GNBasicGlitterNetProcessor"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>gnprocessor</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="GNImprovedGlitterNetProcessor"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>gnprocessor</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="GNAdvancedGlitterNetProcessor"]</xpath>
+          <value>
+            <li Class="UpgradeBuildings.BuildingGroup">
+              <buildingGroup>gnprocessor</buildingGroup>
+            </li>
+          </value>
+          <success>Normal</success>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
