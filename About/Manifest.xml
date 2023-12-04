@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Manifest>
   <identifier>rakros.upgradebuilding</identifier>
-  <version>1.0.0.0</version>
+  <version>1.0.1.0</version>
   <dependencies />
   <incompatibleWith />
   <loadBefore />
-  <loadAfter />
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
 </Manifest>
