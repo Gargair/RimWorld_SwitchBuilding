@@ -19,7 +19,7 @@
     </value>
     <success>Normal</success>
   </Operation>
-
+<!-- 
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="Armchair"]</xpath>
     <value>
@@ -28,5 +28,5 @@
       </li>
     </value>
     <success>Normal</success>
-  </Operation>
+  </Operation> -->
 </Patch>
