@@ -6,6 +6,7 @@
   <url>https://github.com/Gargair/RimWorld_UpgradeBuildings</url>
   <supportedVersions>
     <li>1.4</li>
+    <li>1.5</li>
   </supportedVersions>
   <modDependencies>
     <li>
@@ -18,8 +19,18 @@
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
-  <description>Allows to switch buildings within defined groups. 
-  Allows exchanging Normal Doors with Autodoors.
-  Allows exchanging fueled workbenches with their electric counterparts.
-  </description>
+  <description><![CDATA[Allows to switch buildings within defined groups. 
+  * Allows exchanging Normal Doors with Autodoors.
+  * Allows exchanging fueled workbenches with their electric counterparts.
+  * Allows exchanging between single bed types and double bed types respectively.
+  * Allows exchanging between wood fueled and chemfuel fueled generators.
+
+  For other mod authors:
+  To add support for your own buildings add a modextension to your def with following content:
+  <li Class="UpgradeBuildings.BuildingGroup">
+    <buildingGroup>YourGroupKeyHere</buildingGroup>
+  </li>
+  All buildings with the same group key can be switched between. All buildings in the same building group need to be of the same size.
+  All buildings with the same group key should have the same stuff settings. Otherwise there may be errors when switching building where the target does not support the stuff of the current one.
+  ]]></description>
 </ModMetaData>

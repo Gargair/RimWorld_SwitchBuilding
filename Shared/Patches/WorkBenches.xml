@@ -42,7 +42,7 @@
     <success>Normal</success>
   </Operation>
 
-  <!-- tailroing bench -->
+  <!-- smithy -->
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="FueledSmithy"]</xpath>
     <value>
