@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     public class WorkGiver_ChangeBuilding: WorkGiver_Scanner
     {
@@ -14,7 +14,7 @@ namespace UpgradeBuildings
 
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
-            return pawn?.Map?.designationManager?.SpawnedDesignationsOfDef(UpgradeBuildingDefOf.Designations.ChangeBuilding).Select(des => des.target.Thing);
+            return pawn?.Map?.designationManager?.SpawnedDesignationsOfDef(SwitchBuildingDefOf.Designations.ChangeBuilding).Select(des => des.target.Thing);
         }
 
         public override bool ShouldSkip(Pawn pawn, bool forced = false)

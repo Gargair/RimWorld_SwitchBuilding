@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     [HarmonyPatch(typeof(Frame), nameof(Frame.CompleteConstruction))]
     public class Frame_Patch_CompleteConstruction
     {
         static bool Prefix(Frame __instance, Pawn worker)
         {
-            UpgradeBuildings.LogMessage(LogLevel.Debug, "CompleteConstruction Prefix");
+            SwitchBuilding.LogMessage(LogLevel.Debug, "CompleteConstruction Prefix");
             if (__instance is Frame_ChangeBuilding frame)
             {
-                UpgradeBuildings.LogMessage(LogLevel.Debug, "Found custom Frame");
+                SwitchBuilding.LogMessage(LogLevel.Debug, "Found custom Frame");
                 frame.CustomCompleteConstruction(worker);
                 return false;
             }

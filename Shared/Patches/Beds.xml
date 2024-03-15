@@ -4,7 +4,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="Bedroll"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>singlebed</buildingGroup>
       </li>
     </value>
@@ -14,7 +14,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="Bed"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>singlebed</buildingGroup>
       </li>
     </value>
@@ -24,7 +24,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="HospitalBed"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>singlebed</buildingGroup>
       </li>
     </value>
@@ -35,7 +35,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="BedrollDouble"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>doublebed</buildingGroup>
       </li>
     </value>
@@ -45,7 +45,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="DoubleBed"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>doublebed</buildingGroup>
       </li>
     </value>
@@ -55,7 +55,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="RoyalBed"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>doublebed</buildingGroup>
       </li>
     </value>
@@ -66,7 +66,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="AnimalSleepingBox"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>animalbed</buildingGroup>
       </li>
     </value>
@@ -76,7 +76,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="AnimalBed"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>animalbed</buildingGroup>
       </li>
     </value>

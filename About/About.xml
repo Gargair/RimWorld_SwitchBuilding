@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Upgrade Building</name>
-  <packageId>rakros.upgradebuilding</packageId>
+  <name>Switch Building</name>
+  <packageId>rakros.switchbuilding</packageId>
   <author>Rakros</author>
-  <url>https://github.com/Gargair/RimWorld_UpgradeBuildings</url>
+  <url>https://github.com/Gargair/RimWorld_SwitchBuilding</url>
   <supportedVersions>
     <li>1.4</li>
     <li>1.5</li>
@@ -27,7 +27,7 @@
 
   For other mod authors:
   To add support for your own buildings add a modextension to your def with following content:
-  <li Class="UpgradeBuildings.BuildingGroup">
+  <li Class="SwitchBuilding.BuildingGroup">
     <buildingGroup>YourGroupKeyHere</buildingGroup>
   </li>
   All buildings with the same group key can be switched between. All buildings in the same building group need to be of the same size.

@@ -3,7 +3,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="Door"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>door</buildingGroup>
       </li>
     </value>
@@ -13,7 +13,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="Autodoor"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>door</buildingGroup>
       </li>
     </value>

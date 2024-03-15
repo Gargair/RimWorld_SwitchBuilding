@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     internal class FrameUtility
     {

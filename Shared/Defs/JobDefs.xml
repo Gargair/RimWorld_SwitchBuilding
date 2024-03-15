@@ -2,7 +2,7 @@
 <Defs>
   <JobDef>
     <defName>ChangeBuilding</defName>
-    <driverClass>UpgradeBuildings.JobDriver_ChangeBuilding</driverClass>
+    <driverClass>SwitchBuilding.JobDriver_ChangeBuilding</driverClass>
     <reportString>upgrading TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     <suspendable>false</suspendable>

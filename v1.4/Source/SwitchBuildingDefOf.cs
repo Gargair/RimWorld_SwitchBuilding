@@ -1,9 +1,9 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
-    public static class UpgradeBuildingDefOf
+    public static class SwitchBuildingDefOf
     {
         [DefOf]
         public static class JobDefs

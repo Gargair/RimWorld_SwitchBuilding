@@ -7,8 +7,8 @@
     <ProjectGuid>{559E5B57-CE79-4DCE-88ED-37DEA2437B25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UpgradeBuildings</RootNamespace>
-    <AssemblyName>UpgradeBuildings</AssemblyName>
+    <RootNamespace>SwitchBuilding</RootNamespace>
+    <AssemblyName>SwitchBuilding</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -61,8 +61,8 @@
     <Compile Include="Frame_ChangeBuilding.cs" />
     <Compile Include="Frame_Patch.cs" />
     <Compile Include="JobDriver_ChangeBuilding.cs" />
-    <Compile Include="UpgradeBuildingDefOf.cs" />
-    <Compile Include="UpgradeBuildings.cs" />
+    <Compile Include="SwitchBuildingDefOf.cs" />
+    <Compile Include="SwitchBuilding.cs" />
     <Compile Include="WorkGiver_ChangeBuilding.cs" />
   </ItemGroup>
   <ItemDefinitionGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     public class Command_ChangeBuilding : Command_Action
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using Verse;
 using Verse.Noise;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     public class Comp_ChangeBuilding : ThingComp
     {
@@ -15,7 +15,7 @@ namespace UpgradeBuildings
         public Frame_ChangeBuilding placedFrame;
 
         private DesignationManager DesignationManager => parent?.Map?.designationManager;
-        private bool HasChangeDesignation => DesignationManager?.DesignationOn(parent, UpgradeBuildingDefOf.Designations.ChangeBuilding) != null;
+        private bool HasChangeDesignation => DesignationManager?.DesignationOn(parent, SwitchBuildingDefOf.Designations.ChangeBuilding) != null;
         private bool needDesignationAfterSpawn = false;
 
         public Comp_ChangeBuilding() { }
@@ -49,12 +49,12 @@ namespace UpgradeBuildings
                     needDesignationAfterSpawn = true;
                     return;
                 }
-                var designation = DesignationManager.DesignationOn(parent, UpgradeBuildingDefOf.Designations.ChangeBuilding);
+                var designation = DesignationManager.DesignationOn(parent, SwitchBuildingDefOf.Designations.ChangeBuilding);
                 if (designation == null)
                 {
-                    DesignationManager.AddDesignation(new Designation(parent, UpgradeBuildingDefOf.Designations.ChangeBuilding));
+                    DesignationManager.AddDesignation(new Designation(parent, SwitchBuildingDefOf.Designations.ChangeBuilding));
                 }
-                UpgradeBuildings.LogMessage(LogLevel.Debug, "Creating Frame");
+                SwitchBuilding.LogMessage(LogLevel.Debug, "Creating Frame");
                 Frame_ChangeBuilding frame = new Frame_ChangeBuilding();
                 frame.def = FrameUtility.GetFrameDefForThingDef(thingDef);
                 frame.SetStuffDirect(parent.Stuff);
@@ -64,7 +64,7 @@ namespace UpgradeBuildings
                 frame.StyleDef = parent.StyleDef;
                 frame.thingToChange = parent;
                 frame.SetFactionDirect(parent.Faction);
-                UpgradeBuildings.LogMessage(LogLevel.Debug, "Placing Frame");
+                SwitchBuilding.LogMessage(LogLevel.Debug, "Placing Frame");
                 placedFrame = (Frame_ChangeBuilding)GenSpawn.Spawn(frame, parent.Position, parent.Map, parent.Rotation, WipeMode.Vanish);
             }
         }
@@ -76,7 +76,7 @@ namespace UpgradeBuildings
             payBackResources = null;
             if (DesignationManager != null)
             {
-                var des = DesignationManager.DesignationOn(parent, UpgradeBuildingDefOf.Designations.ChangeBuilding);
+                var des = DesignationManager.DesignationOn(parent, SwitchBuildingDefOf.Designations.ChangeBuilding);
                 if (des != null)
                 {
                     DesignationManager.RemoveDesignation(des);
@@ -101,7 +101,7 @@ namespace UpgradeBuildings
                 if (DesignationManager != null)
                 {
                     needDesignationAfterSpawn = false;
-                    DesignationManager.AddDesignation(new Designation(parent, UpgradeBuildingDefOf.Designations.ChangeBuilding));
+                    DesignationManager.AddDesignation(new Designation(parent, SwitchBuildingDefOf.Designations.ChangeBuilding));
                 }
             }
         }
@@ -126,17 +126,17 @@ namespace UpgradeBuildings
         {
             if (changeTo != null)
             {
-                UpgradeBuildings.GetResourceDifferenceForChange(parent, changeTo, out neededResources, out payBackResources);
-                UpgradeBuildings.LogMessage(LogLevel.Debug, "Initialized resources");
-                UpgradeBuildings.LogMessage(LogLevel.Debug, "needed resources");
+                SwitchBuilding.GetResourceDifferenceForChange(parent, changeTo, out neededResources, out payBackResources);
+                SwitchBuilding.LogMessage(LogLevel.Debug, "Initialized resources");
+                SwitchBuilding.LogMessage(LogLevel.Debug, "needed resources");
                 foreach (var c in neededResources)
                 {
-                    UpgradeBuildings.LogMessage(LogLevel.Debug, c.thingDef.defName, ":", c.count.ToString());
+                    SwitchBuilding.LogMessage(LogLevel.Debug, c.thingDef.defName, ":", c.count.ToString());
                 }
-                UpgradeBuildings.LogMessage(LogLevel.Debug, "payBack resources");
+                SwitchBuilding.LogMessage(LogLevel.Debug, "payBack resources");
                 foreach (var c in payBackResources)
                 {
-                    UpgradeBuildings.LogMessage(LogLevel.Debug, c.thingDef.defName, ":", c.count.ToString());
+                    SwitchBuilding.LogMessage(LogLevel.Debug, c.thingDef.defName, ":", c.count.ToString());
                 }
             }
             else if (changeTo == null)

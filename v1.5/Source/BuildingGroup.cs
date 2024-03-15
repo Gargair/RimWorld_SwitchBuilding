@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     internal class BuildingGroup : DefModExtension
     {

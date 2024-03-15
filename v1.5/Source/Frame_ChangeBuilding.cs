@@ -7,7 +7,7 @@ using Verse;
 using Verse.AI.Group;
 using Verse.Sound;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     public class Frame_ChangeBuilding : Frame
     {
@@ -58,7 +58,7 @@ namespace UpgradeBuildings
 
         public void CustomCompleteConstruction(Pawn worker)
         {
-            UpgradeBuildings.LogMessage(LogLevel.Debug, "CustomCompleteConstruction");
+            SwitchBuilding.LogMessage(LogLevel.Debug, "CustomCompleteConstruction");
             List<CompHasSources> list = new List<CompHasSources>();
             for (int i = 0; i < this.resourceContainer.Count; i++)
             {
@@ -167,7 +167,7 @@ namespace UpgradeBuildings
             }
             else
             {
-                UpgradeBuildings.LogMessage(LogLevel.Debug, "ChangeTo is empty");
+                SwitchBuilding.LogMessage(LogLevel.Debug, "ChangeTo is empty");
             }
             if (!this.Destroyed)
             {

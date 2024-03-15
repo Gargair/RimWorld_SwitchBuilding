@@ -2,7 +2,7 @@
 using System.Linq;
 using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     internal class BuildingGroupUtility
     {
@@ -50,7 +50,7 @@ namespace UpgradeBuildings
                         }
                         else
                         {
-                            UpgradeBuildings.LogMessage(LogLevel.Error, "ThingDef", thingDef.defName, "does not match size of other thingDefs in group", modExt.buildingGroup);
+                            SwitchBuilding.LogMessage(LogLevel.Error, "ThingDef", thingDef.defName, "does not match size of other thingDefs in group", modExt.buildingGroup);
                         }
                     }
                     else
@@ -85,7 +85,7 @@ namespace UpgradeBuildings
                 }
                 else
                 {
-                    UpgradeBuildings.LogMessage(LogLevel.Warning, "Encountered building group not in cache:", modExt.buildingGroup);
+                    SwitchBuilding.LogMessage(LogLevel.Warning, "Encountered building group not in cache:", modExt.buildingGroup);
                 }
             }
             yield break;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse.AI;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     public class JobDriver_ChangeBuilding : JobDriver
     {

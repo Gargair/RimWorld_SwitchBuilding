@@ -4,7 +4,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="WoodFiredGenerator"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>generator</buildingGroup>
       </li>
     </value>
@@ -14,7 +14,7 @@
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/ThingDef[defName="ChemfuelPoweredGenerator"]</xpath>
     <value>
-      <li Class="UpgradeBuildings.BuildingGroup">
+      <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>generator</buildingGroup>
       </li>
     </value>

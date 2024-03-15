@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     [StaticConstructorOnStartup]
-    public static class UpgradeBuildings
+    public static class SwitchBuilding
     {
-        static UpgradeBuildings()
+        static SwitchBuilding()
         {
             LogMessage(LogLevel.Information, "Welcome to pointless log spam");
             var changeComp = new CompProperties_ChangeBuilding();
@@ -21,7 +21,7 @@ namespace UpgradeBuildings
                 thingDef.comps.Add(changeComp);
             }
             LogMessage(LogLevel.Debug, "Finished adding comps to thingDefs");
-            var harmony = new Harmony("rakros.rimworld.upgradebuildings");
+            var harmony = new Harmony("rakros.rimworld.SwitchBuilding");
             harmony.PatchAll();
             FrameUtility.AddCustomFrames();
         }
@@ -30,8 +30,8 @@ namespace UpgradeBuildings
 
         public static void LogMessage(LogLevel logLevel, params string[] messages)
         {
-            var actualMessage = messages.Aggregate("[UpgradeBuildings]", (logMessage, message) => logMessage + " " + message);
-            if (logLevel > UpgradeBuildings.logLevel)
+            var actualMessage = messages.Aggregate("[SwitchBuilding]", (logMessage, message) => logMessage + " " + message);
+            if (logLevel > SwitchBuilding.logLevel)
             {
                 return;
             }

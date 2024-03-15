@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace UpgradeBuildings
+namespace SwitchBuilding
 {
     public class CompProperties_ChangeBuilding : CompProperties
     {
