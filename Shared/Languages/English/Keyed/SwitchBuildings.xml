@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <SwitchBldg.Change>Change</SwitchBldg.Change>
+  <SwitchBldg.NoBuildingGroup>ThingDef configured with buildinggroup extension, but buildinggoup is empty.</SwitchBldg.NoBuildingGroup>
+  <SwitchBldg.Labels.ChangeTo>Change to {0}</SwitchBldg.Labels.ChangeTo>
+  <SwitchBldg.Labels.ChangingTo>Changing to {0}</SwitchBldg.Labels.ChangingTo>
+  <SwitchBldg.Labels.ChangeBuilding>Change Building</SwitchBldg.Labels.ChangeBuilding>
+  <SwitchBldg.Labels.ChangingBuilding>Changing</SwitchBldg.Labels.ChangingBuilding>
+
+  <SwitchBldg.Tooltips.ChangeBuilding>Change this building to another one of the same group</SwitchBldg.Tooltips.ChangeBuilding>
+  <SwitchBldg.Tooltips.ResearchMissing>Following research is missing: {0}</SwitchBldg.Tooltips.ResearchMissing>
+</LanguageData>

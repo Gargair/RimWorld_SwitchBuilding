@@ -2,7 +2,7 @@
 <Defs>
   <DesignationDef>
     <defName>ChangeBuilding</defName>
-    <texturePath>UI/ChangeSmall</texturePath>
+    <texturePath>SwitchBuilding/UI/ChangeSmall</texturePath>
     <targetType>Thing</targetType>
     <removeIfBuildingDespawned>true</removeIfBuildingDespawned>
   </DesignationDef>

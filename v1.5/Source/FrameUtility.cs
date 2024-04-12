@@ -49,7 +49,7 @@ namespace SwitchBuilding
         {
             ThingDef thingDef = BaseFrameDef();
             thingDef.defName = def.defName + "_ChangeBuilding";
-            thingDef.label = def.label + "UpgBldg.Labels.ChangingBuilding".Translate();
+            thingDef.label = def.label + "SwitchBldg.Labels.ChangingBuilding".Translate();
             thingDef.size = def.size;
             thingDef.SetStatBaseValue(StatDefOf.MaxHitPoints, (float)def.BaseMaxHitPoints * 0.25f);
             thingDef.SetStatBaseValue(StatDefOf.Beauty, -8f);

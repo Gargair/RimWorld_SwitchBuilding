@@ -53,7 +53,7 @@ namespace SwitchBuilding
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.Look(ref thingToChange, "UpgBldg.thingToChange");
+            Scribe_References.Look(ref thingToChange, "SwitchBldg.thingToChange");
         }
 
         public void CustomCompleteConstruction(Pawn worker)

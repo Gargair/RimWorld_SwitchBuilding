@@ -10,9 +10,9 @@ namespace SwitchBuilding
     {
         public Command_ChangeBuilding()
         {
-            icon = ContentFinder<Texture2D>.Get("UI/Change");
-            defaultLabel = "UpgBldg.Labels.ChangeBuilding".Translate();
-            defaultDesc = "UpgBldg.Tooltips.ChangeBuilding".Translate();
+            icon = ContentFinder<Texture2D>.Get("SwitchBuilding/UI/Change");
+            defaultLabel = "SwitchBldg.Labels.ChangeBuilding".Translate();
+            defaultDesc = "SwitchBldg.Tooltips.ChangeBuilding".Translate();
             action = () => Find.WindowStack.Add(new FloatMenu(GetFloatingOptions().ToList())
             {
                 vanishIfMouseDistant = true
@@ -42,14 +42,14 @@ namespace SwitchBuilding
             var distinctChangeTos = allSelectedThings.Where((thing) => BuildingGroupUtility.HasBuildingGroup(thing.def)).SelectMany(thing => BuildingGroupUtility.GetOthersInBuildingGroup(thing.def)).Distinct();
             foreach (var thingDef in distinctChangeTos)
             {
-                var option = new FloatMenuOption("UpgBldg.Labels.ChangeTo".Translate(thingDef.LabelCap), () => ChangeTo(thingDef), thingDef);
+                var option = new FloatMenuOption("SwitchBldg.Labels.ChangeTo".Translate(thingDef.LabelCap), () => ChangeTo(thingDef), thingDef);
                 if (thingDef.researchPrerequisites != null)
                 {
                     var unFinishedResearch = thingDef.researchPrerequisites.Where(res => !res.IsFinished);
                     if (unFinishedResearch != null && unFinishedResearch.Count() > 0)
                     {
                         option.Disabled = true;
-                        option.tooltip = "UpgBldg.Tooltips.ResearchMissing".Translate(string.Join(", ", unFinishedResearch.Select(resDef => resDef.LabelCap)));
+                        option.tooltip = "SwitchBldg.Tooltips.ResearchMissing".Translate(string.Join(", ", unFinishedResearch.Select(resDef => resDef.LabelCap)));
                     }
                 }
                 yield return option;

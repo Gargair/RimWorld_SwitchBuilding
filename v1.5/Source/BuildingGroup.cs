@@ -15,7 +15,7 @@ namespace SwitchBuilding
         {
             if (string.IsNullOrWhiteSpace(buildingGroup))
             {
-                yield return "UpgBldg.NoBuildingGroup".Translate();
+                yield return "SwitchBldg.NoBuildingGroup".Translate();
             }
             yield break;
         }

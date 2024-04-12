@@ -109,15 +109,15 @@ namespace SwitchBuilding
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Defs.Look<ThingDef>(ref changeTo, "UpgBldg.changeTo");
-            Scribe_References.Look<Frame_ChangeBuilding>(ref placedFrame, "UpgBldg.placedFrame");
+            Scribe_Defs.Look<ThingDef>(ref changeTo, "SwitchBldg.changeTo");
+            Scribe_References.Look<Frame_ChangeBuilding>(ref placedFrame, "SwitchBldg.placedFrame");
         }
 
         public override string CompInspectStringExtra()
         {
             if (HasChangeDesignation)
             {
-                return "UpgBldg.Labels.ChangingTo".Translate(changeTo.LabelCap);
+                return "SwitchBldg.Labels.ChangingTo".Translate(changeTo.LabelCap);
             }
             return base.CompInspectStringExtra();
         }
