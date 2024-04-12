@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Excluded>
+    <exclude>.git</exclude>
+    <exclude>Shared\Textures\UI\Change.dds</exclude>
+    <exclude>Shared\Textures\UI\ChangeSmall.dds</exclude>
+    <exclude>v1.4\Assemblies\SwitchBuilding.pdb</exclude>
+    <exclude>v1.4\Source</exclude>
+    <exclude>v1.5\Assemblies\SwitchBuilding.pdb</exclude>
+    <exclude>v1.5\Source</exclude>
+  </Excluded>
+</Configuration>

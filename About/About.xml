@@ -3,6 +3,7 @@
   <name>Switch Building</name>
   <packageId>rakros.switchbuilding</packageId>
   <author>Rakros</author>
+  <modVersion>1.0.0</modVersion>
   <url>https://github.com/Gargair/RimWorld_SwitchBuilding</url>
   <supportedVersions>
     <li>1.4</li>

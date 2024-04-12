@@ -39,7 +39,7 @@ namespace SwitchBuilding
         private static IEnumerable<FloatMenuOption> GetFloatingOptions()
         {
             var allSelectedThings = Find.Selector.SelectedObjects.FindAll((object o) => typeof(ThingWithComps).IsAssignableFrom(o.GetType())).Cast<ThingWithComps>();
-            var distinctChangeTos = allSelectedThings.Where((thing) => BuildingGroupUtility.Instance.HasBuildingGroup(thing.def)).SelectMany(thing => BuildingGroupUtility.Instance.GetOthersInBuildingGroup(thing.def)).Distinct();
+            var distinctChangeTos = allSelectedThings.Where((thing) => BuildingGroupUtility.HasBuildingGroup(thing.def)).SelectMany(thing => BuildingGroupUtility.GetOthersInBuildingGroup(thing.def)).Distinct();
             foreach (var thingDef in distinctChangeTos)
             {
                 var option = new FloatMenuOption("UpgBldg.Labels.ChangeTo".Translate(thingDef.LabelCap), () => ChangeTo(thingDef), thingDef);

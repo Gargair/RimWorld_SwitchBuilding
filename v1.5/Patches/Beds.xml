@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- single beds -->
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[@Name="BedWithQualityBase"]</xpath>
+        <value>
+            <li Class="SwitchBuilding.BuildingGroup">
+                <buildingGroup>bed</buildingGroup>
+            </li>
+        </value>
+        <success>Normal</success>
+    </Operation>
+
+    <!-- Parent: FurnitureWithQualityBase -->
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[@Name="AnimalBedFurnitureBase"]</xpath>
+        <value>
+            <li Class="SwitchBuilding.BuildingGroup">
+                <buildingGroup>animalbed</buildingGroup>
+            </li>
+        </value>
+        <success>Normal</success>
+    </Operation>
+</Patch>

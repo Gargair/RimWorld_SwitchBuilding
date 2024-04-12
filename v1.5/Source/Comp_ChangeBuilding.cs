@@ -39,7 +39,7 @@ namespace SwitchBuilding
 
         public void SetChangeTo(ThingDef thingDef)
         {
-            if (BuildingGroupUtility.Instance.AreInSameBuildingGroup(parent.def, thingDef) && parent.def != thingDef)
+            if (BuildingGroupUtility.AreInSameBuildingGroup(parent.def, thingDef) && parent.def != thingDef)
             {
                 CancelChange();
                 changeTo = thingDef;

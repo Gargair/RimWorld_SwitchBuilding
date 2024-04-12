@@ -24,6 +24,10 @@ namespace SwitchBuilding
             var harmony = new Harmony("rakros.rimworld.SwitchBuilding");
             harmony.PatchAll();
             FrameUtility.AddCustomFrames();
+            foreach (var g in BuildingGroupUtility.Instance.GroupCacheForReading)
+            {
+                LogMessage(LogLevel.Debug, g.Key, "-", g.Value.Join(t => t.defName, ","));
+            }
         }
 
         public static LogLevel logLevel = LogLevel.Information;
@@ -77,6 +81,7 @@ namespace SwitchBuilding
             }
             else
             {
+                LogMessage(LogLevel.Debug, "Nothing made from stuff");
                 targetCostList = target.CostListAdjusted(null);
             }
 

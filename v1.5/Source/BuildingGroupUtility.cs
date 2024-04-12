@@ -25,54 +25,63 @@ namespace SwitchBuilding
 
         #region Private Parts
         private Dictionary<string, List<ThingDef>> groupCache;
+        public Dictionary<string, List<ThingDef>> GroupCacheForReading => groupCache;
 
         private BuildingGroupUtility() { }
 
         private void BuildCache()
         {
             groupCache = new Dictionary<string, List<ThingDef>>();
-            foreach (var thingDef in DefDatabase<ThingDef>.AllDefs.Where(thingDef => thingDef.category == ThingCategory.Building))
+            foreach (var thingDef in DefDatabase<ThingDef>.AllDefs.Where(thingDef => thingDef.category == ThingCategory.Building && thingDef.BuildableByPlayer))
             {
-                var modExt = thingDef.GetModExtension<BuildingGroup>();
-                if (modExt != null)
+                if (thingDef.HasModExtension<BuildingGroup>())
                 {
-                    if (!groupCache.ContainsKey(modExt.buildingGroup))
+                    foreach (var modExt in thingDef.modExtensions.Where(m => m is BuildingGroup).Select(m => m as BuildingGroup))
                     {
-                        groupCache.Add(modExt.buildingGroup, new List<ThingDef>());
-                    }
-                    var groupList = groupCache[modExt.buildingGroup];
-                    var firstInGroup = groupList.FirstOrDefault();
-                    if (firstInGroup != null)
-                    {
-                        if (firstInGroup.Size == thingDef.Size)
+                        var buildingGroup = GetBuildGroup(modExt, thingDef);
+                        SwitchBuilding.LogMessage(LogLevel.Debug, thingDef.defName, buildingGroup);
+                        if (!groupCache.ContainsKey(buildingGroup))
                         {
-                            groupList.Add(thingDef);
+                            groupCache.Add(buildingGroup, new List<ThingDef>());
+                        }
+                        var groupList = groupCache[buildingGroup];
+                        var firstInGroup = groupList.FirstOrDefault();
+                        if (firstInGroup != null)
+                        {
+                            if (firstInGroup.Size == thingDef.Size)
+                            {
+                                groupList.Add(thingDef);
+                            }
+                            else
+                            {
+                                SwitchBuilding.LogMessage(LogLevel.Error, "ThingDef", thingDef.defName, "does not match size of other thingDefs in group", buildingGroup);
+                            }
                         }
                         else
                         {
-                            SwitchBuilding.LogMessage(LogLevel.Error, "ThingDef", thingDef.defName, "does not match size of other thingDefs in group", modExt.buildingGroup);
+                            groupList.Add(thingDef);
                         }
-                    }
-                    else
-                    {
-                        groupList.Add(thingDef);
                     }
                 }
             }
         }
         #endregion
 
-        public bool HasBuildingGroup(ThingDef thingDef)
+        public static bool HasBuildingGroup(ThingDef thingDef)
         {
-            return thingDef.GetModExtension<BuildingGroup>() != null;
+            return thingDef.HasModExtension<BuildingGroup>() && thingDef.BuildableByPlayer;
         }
 
-        public IEnumerable<ThingDef> GetOthersInBuildingGroup(ThingDef thingDef)
+        public static IEnumerable<ThingDef> GetOthersInBuildingGroup(ThingDef thingDef)
         {
-            var modExt = thingDef.GetModExtension<BuildingGroup>();
-            if (modExt != null)
+            if (!thingDef.BuildableByPlayer)
             {
-                var groupList = groupCache[modExt.buildingGroup];
+                yield break;
+            }
+            foreach (var modExt in thingDef.modExtensions.Where(m => m is BuildingGroup).Select(m => m as BuildingGroup))
+            {
+                var buildingGroup = GetBuildGroup(modExt, thingDef);
+                var groupList = Instance.groupCache[buildingGroup];
                 if (groupList != null)
                 {
                     foreach (var otherThingDef in groupList)
@@ -85,21 +94,20 @@ namespace SwitchBuilding
                 }
                 else
                 {
-                    SwitchBuilding.LogMessage(LogLevel.Warning, "Encountered building group not in cache:", modExt.buildingGroup);
+                    SwitchBuilding.LogMessage(LogLevel.Warning, "Encountered building group not in cache:", buildingGroup);
                 }
             }
             yield break;
         }
 
-        public bool AreInSameBuildingGroup(ThingDef thingDef1, ThingDef thingDef2)
+        public static bool AreInSameBuildingGroup(ThingDef thingDef1, ThingDef thingDef2)
         {
-            var modExt1 = thingDef1.GetModExtension<BuildingGroup>();
-            var modExt2 = thingDef2.GetModExtension<BuildingGroup>();
-            if (modExt1 != null && modExt2 != null)
-            {
-                return modExt1.buildingGroup == modExt2.buildingGroup && thingDef1.Size == thingDef2.Size;
-            }
-            return false;
+            return GetOthersInBuildingGroup(thingDef1).Contains(thingDef2);
+        }
+
+        public static string GetBuildGroup(BuildingGroup bGroup, ThingDef thingDef)
+        {
+            return $"{bGroup.buildingGroup}_{thingDef.Size.x}_{thingDef.Size.z}";
         }
     }
 }
