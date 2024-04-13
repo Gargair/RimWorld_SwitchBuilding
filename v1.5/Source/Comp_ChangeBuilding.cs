@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
-using Verse.Noise;
 
 namespace SwitchBuilding
 {
@@ -24,7 +23,7 @@ namespace SwitchBuilding
         {
             if (!HasChangeDesignation)
             {
-                if (parent.Faction == Faction.OfPlayer && (parent.GetInnerIfMinified() is Building))
+                if (parent.Faction == Faction.OfPlayer && (parent is Building) && BuildingGroupUtility.GetOthersInBuildingGroup(parent.def).Any())
                 {
                     yield return CreateChangeBuildingGizmo();
                 }

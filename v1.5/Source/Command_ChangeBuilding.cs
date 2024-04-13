@@ -10,7 +10,7 @@ namespace SwitchBuilding
     {
         public Command_ChangeBuilding()
         {
-            icon = ContentFinder<Texture2D>.Get("SwitchBuilding/UI/Change");
+            icon = SwitchBuilding.ChangeBuildingCommandIcon;
             defaultLabel = "SwitchBldg.Labels.ChangeBuilding".Translate();
             defaultDesc = "SwitchBldg.Tooltips.ChangeBuilding".Translate();
             action = () => Find.WindowStack.Add(new FloatMenu(GetFloatingOptions().ToList())

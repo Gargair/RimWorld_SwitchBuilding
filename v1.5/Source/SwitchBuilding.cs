@@ -3,6 +3,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace SwitchBuilding
@@ -30,6 +31,7 @@ namespace SwitchBuilding
             }
         }
 
+        public static Texture2D ChangeBuildingCommandIcon = ContentFinder<Texture2D>.Get("SwitchBuilding/UI/Change");
         public static LogLevel logLevel = LogLevel.Information;
 
         public static void LogMessage(LogLevel logLevel, params string[] messages)
