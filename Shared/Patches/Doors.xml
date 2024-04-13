@@ -7,7 +7,6 @@
         <buildingGroup>door</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -17,6 +16,5 @@
         <buildingGroup>door</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 </Patch>

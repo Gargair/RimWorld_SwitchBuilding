@@ -8,7 +8,6 @@
         <buildingGroup>generator</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -18,6 +17,5 @@
         <buildingGroup>generator</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 </Patch>

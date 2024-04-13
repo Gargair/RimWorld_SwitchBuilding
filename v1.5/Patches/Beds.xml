@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-    <!-- single beds -->
+    <!-- colonist beds -->
     <Operation Class="PatchOperationAddModExtension">
         <xpath>/Defs/ThingDef[@Name="BedWithQualityBase"]</xpath>
         <value>
@@ -8,7 +8,6 @@
                 <buildingGroup>bed</buildingGroup>
             </li>
         </value>
-        <success>Normal</success>
     </Operation>
 
     <!-- Parent: FurnitureWithQualityBase -->
@@ -19,6 +18,5 @@
                 <buildingGroup>animalbed</buildingGroup>
             </li>
         </value>
-        <success>Normal</success>
     </Operation>
 </Patch>

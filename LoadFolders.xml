@@ -6,5 +6,6 @@
   <v1.5>
     <li>Shared</li>
     <li>v1.5</li>
+    <li IfModActive="vanillaexpanded.vfeproduction">v1.5/Mods/VFEP</li>
   </v1.5>
 </loadFolders>

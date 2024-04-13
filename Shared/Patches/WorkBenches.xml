@@ -8,7 +8,6 @@
         <buildingGroup>stove</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -18,7 +17,6 @@
         <buildingGroup>stove</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 
   <!-- tailroing bench -->
@@ -29,7 +27,6 @@
         <buildingGroup>tailoringbench</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -39,7 +36,6 @@
         <buildingGroup>tailoringbench</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 
   <!-- smithy -->
@@ -50,7 +46,6 @@
         <buildingGroup>smithy</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -60,6 +55,45 @@
         <buildingGroup>smithy</buildingGroup>
       </li>
     </value>
-    <success>Normal</success>
+  </Operation>
+
+  <!-- butcher-->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="TableButcher"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>butcher</buildingGroup>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- stonecutter-->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="TableStonecutter"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>stonecutter</buildingGroup>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- arttable-->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="TableSculpting"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>arttable</buildingGroup>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- smelter -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="ElectricSmelter"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>smelter</buildingGroup>
+      </li>
+    </value>
   </Operation>
 </Patch>

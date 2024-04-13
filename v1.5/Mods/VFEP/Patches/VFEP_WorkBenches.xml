@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+  <!-- smelter-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="Stool"]</xpath>
+    <xpath>/Defs/ThingDef[defName="VFE_FueledSmelter"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
-        <buildingGroup>stool</buildingGroup>
+        <buildingGroup>smelter</buildingGroup>
       </li>
     </value>
   </Operation>
 
+  <!-- butcher-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="DiningChair"]</xpath>
+    <xpath>/Defs/ThingDef[defName="VFE_TableButcherElectric"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
-        <buildingGroup>stool</buildingGroup>
+        <buildingGroup>butcher</buildingGroup>
       </li>
     </value>
   </Operation>
-<!-- 
+
+  <!-- stonecutter-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="Armchair"]</xpath>
+    <xpath>/Defs/ThingDef[defName="VFE_TableStonecutterElectric"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
-        <buildingGroup>stool</buildingGroup>
+        <buildingGroup>stonecutter</buildingGroup>
       </li>
     </value>
-  </Operation> -->
+  </Operation>
 </Patch>
