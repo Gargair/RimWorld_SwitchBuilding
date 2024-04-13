@@ -100,22 +100,22 @@ namespace SwitchBuilding
 
                 thing.HitPoints = (int)Math.Floor(((float)thingToChange.HitPoints / (float)thingToChange.MaxHitPoints) * (float)thing.MaxHitPoints);
 
-                var compPower = thing.TryGetComp<CompPower>();
-                if (compPower != null)
-                {
-                    var compPower2 = PowerConnectionMaker.BestTransmitterForConnector(position, Map);
-                    if (compPower2 != null)
-                    {
-                        compPower.ConnectToTransmitter(compPower2);
-                        for (var i = 0; i < 5; i++)
-                        {
-                            FleckMaker.ThrowMetaPuff(position.ToVector3Shifted(), Map);
-                        }
+                //var compPower = thing.TryGetComp<CompPower>();
+                //if (compPower != null)
+                //{
+                //    var compPower2 = PowerConnectionMaker.BestTransmitterForConnector(position, Map);
+                //    if (compPower2 != null)
+                //    {
+                //        compPower.ConnectToTransmitter(compPower2);
+                //        for (var i = 0; i < 5; i++)
+                //        {
+                //            FleckMaker.ThrowMetaPuff(position.ToVector3Shifted(), Map);
+                //        }
 
-                        Map.mapDrawer.MapMeshDirty(position, MapMeshFlagDefOf.PowerGrid);
-                        Map.mapDrawer.MapMeshDirty(position, MapMeshFlagDefOf.Things);
-                    }
-                }
+                //        Map.mapDrawer.MapMeshDirty(position, MapMeshFlagDefOf.PowerGrid);
+                //        Map.mapDrawer.MapMeshDirty(position, MapMeshFlagDefOf.Things);
+                //    }
+                //}
 
                 CompHasSources compHasSources2 = thing.TryGetComp<CompHasSources>();
                 if (compHasSources2 != null && !list.NullOrEmpty<CompHasSources>())
@@ -219,38 +219,27 @@ namespace SwitchBuilding
         private static void CopyComps(Thing oldThing, Thing newThing, Pawn worker)
         {
             // Quality and Art
-            var hasQuality = oldThing.TryGetQuality(out var targetqc);
-            var compQuality = newThing.TryGetComp<CompQuality>();
-            if (hasQuality && compQuality != null)
+            if (newThing.TryGetComp<CompQuality>(out var targetQualityComp))
             {
-                compQuality.SetQuality(targetqc, ArtGenerationContext.Colony);
-            }
-            else if (compQuality != null)
-            {
-                compQuality.SetQuality(QualityUtility.GenerateQuality(QualityGenerator.BaseGen), ArtGenerationContext.Colony);
-            }
-            CompArt compArt = newThing.TryGetComp<CompArt>();
-            if (compArt != null)
-            {
-                if (compQuality == null)
+                if (oldThing.TryGetComp<CompQuality>(out var sourceQualityComp))
                 {
-                    compArt.InitializeArt(ArtGenerationContext.Colony);
+                    targetQualityComp.SetQuality(sourceQualityComp.Quality, ArtGenerationContext.Colony);
                 }
-                compArt.JustCreatedBy(worker);
+                else
+                {
+                    targetQualityComp.SetQuality(QualityUtility.GenerateQuality(QualityGenerator.BaseGen), ArtGenerationContext.Colony);
+                }
+            }
+            if (newThing.TryGetComp<CompArt>(out var targetArtComp))
+            {
+                targetArtComp.InitializeArt(ArtGenerationContext.Colony);
+                targetArtComp.JustCreatedBy(worker);
             }
 
             // Check Refuelable
-            var compRefuelable = oldThing.TryGetComp<CompRefuelable>();
-            if (compRefuelable != null)
+            if (oldThing.TryGetComp<CompRefuelable>(out var sourceRefuelableComp))
             {
-                var num = Mathf.CeilToInt(compRefuelable.Fuel);
-                var fuelDef = compRefuelable.Props.fuelFilter.AllowedThingDefs.First();
-                if (fuelDef != null && num > 0)
-                {
-                    var fuel = ThingMaker.MakeThing(fuelDef);
-                    fuel.stackCount = num;
-                    GenPlace.TryPlaceThing(fuel, oldThing.Position, oldThing.Map, ThingPlaceMode.Near);
-                }
+                sourceRefuelableComp.PostDestroy(DestroyMode.WillReplace, oldThing.Map);
             }
 
             // Copy BillStack
