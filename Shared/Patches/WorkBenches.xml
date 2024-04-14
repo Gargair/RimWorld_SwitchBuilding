@@ -96,4 +96,14 @@
       </li>
     </value>
   </Operation>
+
+  <!-- druglab -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="DrugLab"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>druglab</buildingGroup>
+      </li>
+    </value>
+  </Operation>
 </Patch>

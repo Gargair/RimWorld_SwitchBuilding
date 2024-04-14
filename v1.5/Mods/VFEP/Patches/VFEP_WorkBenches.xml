@@ -29,4 +29,14 @@
       </li>
     </value>
   </Operation>
+
+  <!-- druglab -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="VFE_TableDrugLabElectric"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>druglab</buildingGroup>
+      </li>
+    </value>
+  </Operation>
 </Patch>
