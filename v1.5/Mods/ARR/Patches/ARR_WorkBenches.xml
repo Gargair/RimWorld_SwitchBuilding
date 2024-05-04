@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="ARR_AetherPrepTable" or defName="ARR_AetherPrepTableLinked"]</xpath>
+        <value>
+            <li Class="SwitchBuilding.BuildingGroup">
+                <buildingGroup>arr_preptable</buildingGroup>
+            </li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="ARR_AetherCraftTable" or defName="ARR_AetherCraftTableLinked"]</xpath>
+        <value>
+            <li Class="SwitchBuilding.BuildingGroup">
+                <buildingGroup>arr_crafttable</buildingGroup>
+            </li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="ARR_AetherTailorTable" or defName="ARR_AetherTailorTableLinked"]</xpath>
+        <value>
+            <li Class="SwitchBuilding.BuildingGroup">
+                <buildingGroup>arr_tailortable</buildingGroup>
+            </li>
+        </value>
+    </Operation>
+</Patch>

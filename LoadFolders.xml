@@ -7,5 +7,6 @@
     <li>Shared</li>
     <li>v1.5</li>
     <li IfModActive="vanillaexpanded.vfeproduction">v1.5/Mods/VFEP</li>
+    <li IfModActive="Aelanna.ARimReborn.Core">v1.5/Mods/ARR</li>
   </v1.5>
 </loadFolders>
