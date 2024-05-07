@@ -40,10 +40,8 @@
     <Compile Include="FrameUtility.cs" />
     <Compile Include="Frame_ChangeBuilding.cs" />
     <Compile Include="Frame_Patch.cs" />
-    <Compile Include="JobDriver_ChangeBuilding.cs" />
     <Compile Include="SwitchBuildingDefOf.cs" />
     <Compile Include="SwitchBuilding.cs" />
-    <Compile Include="WorkGiver_ChangeBuilding.cs" />
   </ItemGroup>
   <ItemDefinitionGroup>
     <PackageReference ExcludeAssets="runtime" />

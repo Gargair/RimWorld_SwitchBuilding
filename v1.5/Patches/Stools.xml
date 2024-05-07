@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Stool" or defName="DiningChair"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>stool</buildingGroup>
+      </li>
+    </value>
+  </Operation>
+
+<!-- 
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Armchair"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>stool</buildingGroup>
+      </li>
+    </value>
+  </Operation> -->
+</Patch>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <!-- Generators -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="WoodFiredGenerator" or defName="ChemfuelPoweredGenerator"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>generator</buildingGroup>
+      </li>
+    </value>
+  </Operation>
+</Patch>
