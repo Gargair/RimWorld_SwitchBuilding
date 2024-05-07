@@ -3,7 +3,7 @@
 
   <WorkGiverDef>
     <defName>ChangeBuilding</defName>
-    <label>upgrade the designated item to its automated counterpart</label>
+    <label>change the building</label>
     <giverClass>SwitchBuilding.WorkGiver_ChangeBuilding</giverClass>
     <workType>Construction</workType>
     <verb>change</verb>

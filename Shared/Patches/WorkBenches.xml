@@ -2,16 +2,7 @@
 <Patch>
   <!-- Stoves -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="FueledStove"]</xpath>
-    <value>
-      <li Class="SwitchBuilding.BuildingGroup">
-        <buildingGroup>stove</buildingGroup>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="ElectricStove"]</xpath>
+    <xpath>Defs/ThingDef[defName="FueledStove" or defName="ElectricStove"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>stove</buildingGroup>
@@ -21,16 +12,7 @@
 
   <!-- tailroing bench -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="HandTailoringBench"]</xpath>
-    <value>
-      <li Class="SwitchBuilding.BuildingGroup">
-        <buildingGroup>tailoringbench</buildingGroup>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="ElectricTailoringBench"]</xpath>
+    <xpath>Defs/ThingDef[defName="HandTailoringBench" or defName="ElectricTailoringBench"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>tailoringbench</buildingGroup>
@@ -40,16 +22,7 @@
 
   <!-- smithy -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="FueledSmithy"]</xpath>
-    <value>
-      <li Class="SwitchBuilding.BuildingGroup">
-        <buildingGroup>smithy</buildingGroup>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="ElectricSmithy"]</xpath>
+    <xpath>Defs/ThingDef[defName="FueledSmithy" or defName="ElectricSmithy"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>smithy</buildingGroup>
@@ -59,7 +32,7 @@
 
   <!-- butcher-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="TableButcher"]</xpath>
+    <xpath>Defs/ThingDef[defName="TableButcher"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>butcher</buildingGroup>
@@ -69,7 +42,7 @@
 
   <!-- stonecutter-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="TableStonecutter"]</xpath>
+    <xpath>Defs/ThingDef[defName="TableStonecutter"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>stonecutter</buildingGroup>
@@ -79,7 +52,7 @@
 
   <!-- arttable-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="TableSculpting"]</xpath>
+    <xpath>Defs/ThingDef[defName="TableSculpting"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>arttable</buildingGroup>
@@ -89,7 +62,7 @@
 
   <!-- smelter -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="ElectricSmelter"]</xpath>
+    <xpath>Defs/ThingDef[defName="ElectricSmelter"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>smelter</buildingGroup>
@@ -99,7 +72,7 @@
 
   <!-- druglab -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="DrugLab"]</xpath>
+    <xpath>Defs/ThingDef[defName="DrugLab"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>druglab</buildingGroup>

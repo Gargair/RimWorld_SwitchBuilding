@@ -3,7 +3,7 @@
   <JobDef>
     <defName>ChangeBuilding</defName>
     <driverClass>SwitchBuilding.JobDriver_ChangeBuilding</driverClass>
-    <reportString>upgrading TargetA.</reportString>
+    <reportString>changing TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     <suspendable>false</suspendable>
   </JobDef>

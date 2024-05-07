@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <!-- single beds -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Bedroll" or defName="Bed" or defName="HospitalBed"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>singlebed</buildingGroup>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- double beds -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BedrollDouble" or defName="DoubleBed" or defName="RoyalBed"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>doublebed</buildingGroup>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- animal beds -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="AnimalSleepingBox" or defName="AnimalBed"]</xpath>
+    <value>
+      <li Class="SwitchBuilding.BuildingGroup">
+        <buildingGroup>animalbed</buildingGroup>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

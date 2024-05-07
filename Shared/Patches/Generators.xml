@@ -2,16 +2,7 @@
 <Patch>
   <!-- Generators -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="WoodFiredGenerator"]</xpath>
-    <value>
-      <li Class="SwitchBuilding.BuildingGroup">
-        <buildingGroup>generator</buildingGroup>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="ChemfuelPoweredGenerator"]</xpath>
+    <xpath>Defs/ThingDef[defName="WoodFiredGenerator" or defName="ChemfuelPoweredGenerator"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>generator</buildingGroup>

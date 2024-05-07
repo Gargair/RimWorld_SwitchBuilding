@@ -2,7 +2,7 @@
 <Patch>
   <!-- smelter-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="VFE_FueledSmelter"]</xpath>
+    <xpath>Defs/ThingDef[defName="VFE_FueledSmelter"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>smelter</buildingGroup>
@@ -12,7 +12,7 @@
 
   <!-- butcher-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="VFE_TableButcherElectric"]</xpath>
+    <xpath>Defs/ThingDef[defName="VFE_TableButcherElectric"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>butcher</buildingGroup>
@@ -22,7 +22,7 @@
 
   <!-- stonecutter-->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="VFE_TableStonecutterElectric"]</xpath>
+    <xpath>Defs/ThingDef[defName="VFE_TableStonecutterElectric"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>stonecutter</buildingGroup>
@@ -32,7 +32,7 @@
 
   <!-- druglab -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="VFE_TableDrugLabElectric"]</xpath>
+    <xpath>Defs/ThingDef[defName="VFE_TableDrugLabElectric"]</xpath>
     <value>
       <li Class="SwitchBuilding.BuildingGroup">
         <buildingGroup>druglab</buildingGroup>

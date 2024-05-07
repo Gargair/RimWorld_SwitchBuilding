@@ -2,7 +2,7 @@
 <Patch>
     <!-- colonist beds -->
     <Operation Class="PatchOperationAddModExtension">
-        <xpath>/Defs/ThingDef[@Name="BedWithQualityBase"]</xpath>
+        <xpath>Defs/ThingDef[@Name="BedWithQualityBase"]</xpath>
         <value>
             <li Class="SwitchBuilding.BuildingGroup">
                 <buildingGroup>bed</buildingGroup>
@@ -12,7 +12,7 @@
 
     <!-- Parent: FurnitureWithQualityBase -->
     <Operation Class="PatchOperationAddModExtension">
-        <xpath>/Defs/ThingDef[@Name="AnimalBedFurnitureBase"]</xpath>
+        <xpath>Defs/ThingDef[@Name="AnimalBedFurnitureBase"]</xpath>
         <value>
             <li Class="SwitchBuilding.BuildingGroup">
                 <buildingGroup>animalbed</buildingGroup>
